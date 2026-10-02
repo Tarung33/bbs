@@ -1,0 +1,19 @@
+{
+  "name": "cryptovisor",
+  "version": "1.0.0",
+  "description": "Interactive Cryptographic Visualization and Attack Simulation using Blum Blum Shub",
+  "private": true,
+  "scripts": {
+    "start": "python run.py",
+    "dev": "python run.py"
+  },
+  "keywords": [
+    "cryptography",
+    "blum-blum-shub",
+    "aes-256-gcm",
+    "react",
+    "fastapi"
+  ],
+  "author": "",
+  "license": "MIT"
+}

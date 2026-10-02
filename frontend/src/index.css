@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-white: #FFFFFF;
+    --bg-offwhite: #FAFAFA;
+    --bg-lightgray: #F4F4F5;
+    --text-black: #09090B;
+    --text-muted: #52525B;
+    --border-color: #E4E4E7;
+    --border-dark: #09090B;
+    --accent-red: #DC2626;
+    --accent-green: #16A34A;
+  }
+
+  body {
+    background-color: var(--bg-white);
+    color: var(--text-black);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Swiss & Editorial Typography */
+.font-heading {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Minimalist Museum & Editorial Styles */
+.editorial-card {
+  background-color: #FFFFFF;
+  border: 1px solid #09090B;
+  box-shadow: 4px 4px 0px 0px #09090B;
+}
+
+.editorial-card-subtle {
+  background-color: #FAFAFA;
+  border: 1px solid #E4E4E7;
+}
+
+.editorial-card-red {
+  background-color: #FEF2F2;
+  border: 1px solid #DC2626;
+  box-shadow: 4px 4px 0px 0px #DC2626;
+}
+
+.editorial-card-green {
+  background-color: #F0FDF4;
+  border: 1px solid #16A34A;
+  box-shadow: 4px 4px 0px 0px #16A34A;
+}
+
+/* Continuous Journey Black Line */
+.journey-line {
+  height: 2px;
+  background-color: #09090B;
+}
+
+.journey-line-red {
+  height: 2px;
+  background-color: #DC2626;
+}
+
+.journey-line-dashed {
+  border-top: 2px dashed #09090B;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAFA;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #09090B;
+}

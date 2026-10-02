@@ -1,0 +1,3 @@
+@echo off
+echo Starting CRYPTOVISOR...
+python run.py
