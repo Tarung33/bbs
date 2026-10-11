@@ -1,101 +1,124 @@
 import React from 'react';
-import { Shield, BookOpen, Cpu, Map, Activity } from 'lucide-react';
+import { RotateCcw, Table, BookOpen, Sparkles } from 'lucide-react';
 
 export default function EditorialNavbar({
-  currentStage,
-  setStage,
-  numberMode,
-  setNumberMode,
-  showBackendDrawer,
-  setShowBackendDrawer,
-  onOpenJourneyMap,
-  onOpenSequenceModal
+  currentStep,
+  mode,
+  setMode,
+  onReset,
+  onOpenSequenceModal,
+  setStep
 }) {
+  const steps = [
+    { num: 1, label: 'PRIMES' },
+    { num: 2, label: 'MODULUS' },
+    { num: 3, label: 'SEED' },
+    { num: 4, label: 'STATE x₀' },
+    { num: 5, label: 'MACHINE' },
+    { num: 6, label: 'BITSTREAM' },
+    { num: 7, label: 'MESSAGE & SECURITY' },
+    { num: 8, label: 'SUMMARY' },
+  ];
+
   return (
-    <header className="border-b border-[#111111] bg-[#FFFFFF] sticky top-0 z-40 font-mono text-xs text-[#111111] shadow-2xs">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
+    <header className="border-b-2 border-[#09090B] bg-[#FFFFFF] sticky top-0 z-40">
+      {/* Top Banner */}
+      <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
         
-        {/* Brand & Tagline */}
-        <div className="flex items-center space-x-3">
-          <button 
-            onClick={() => setStage(1)}
-            className="flex items-center space-x-2 font-bold text-sm tracking-tight hover:opacity-80 transition-opacity cursor-pointer"
-          >
-            <div className="w-7 h-7 bg-[#111111] text-white flex items-center justify-center font-black text-xs">
-              CV
-            </div>
-            <span className="font-bold text-base tracking-wider">CRYPTOVISOR</span>
-          </button>
-          
-          <span className="hidden sm:inline text-[#555555] font-normal text-[11px] border-l border-[#111111] pl-3">
-            SEE ENCRYPTION. UNDERSTAND SECURITY.
-          </span>
+        {/* Title */}
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 bg-[#09090B] inline-block"></span>
+            <h1 className="font-heading font-extrabold text-xl tracking-tight text-[#09090B]">
+              BLUM BLUM SHUB
+            </h1>
+            <span className="text-xs px-2 py-0.5 border border-[#09090B] font-mono font-bold bg-[#FAFAFA]">
+              BBS PRNG
+            </span>
+          </div>
+          <p className="text-xs text-[#52525B] font-mono">
+            THE RANDOMNESS MACHINE • CNS / BCS703 VISUAL LAB
+          </p>
         </div>
 
-        {/* Center Mode Switcher: EXPLAIN MODE vs REAL CRYPTO MODE */}
-        <div className="flex items-center bg-[#F7F7F5] border border-[#111111] p-0.5">
-          <button
-            onClick={() => setNumberMode('EXPLAIN')}
-            className={`px-3 py-1 text-[11px] font-bold flex items-center space-x-1 cursor-pointer transition-colors ${
-              numberMode === 'EXPLAIN'
-                ? 'bg-[#111111] text-white'
-                : 'text-[#555555] hover:text-[#111111]'
-            }`}
-            title="Use small numbers (p=7, q=11, n=77) so anyone can follow the math"
-          >
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>EXPLAIN MODE (p=7, q=11)</span>
-          </button>
+        {/* Mode Selector & Action Buttons */}
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Learn Mode / Preset Toggle */}
+          <div className="flex border-2 border-[#09090B] bg-[#FAFAFA] p-0.5 text-xs font-mono">
+            <button
+              onClick={() => setMode('DEMO')}
+              className={`px-3 py-1 font-bold transition-colors ${
+                mode === 'DEMO'
+                  ? 'bg-[#09090B] text-white'
+                  : 'text-[#09090B] hover:bg-[#E4E4E7]'
+              }`}
+            >
+              DEMO (7, 11)
+            </button>
+            <button
+              onClick={() => setMode('NOTES')}
+              className={`px-3 py-1 font-bold transition-colors ${
+                mode === 'NOTES'
+                  ? 'bg-[#09090B] text-white'
+                  : 'text-[#09090B] hover:bg-[#E4E4E7]'
+              }`}
+            >
+              NOTES EXAMPLE (383, 503)
+            </button>
+          </div>
 
-          <button
-            onClick={() => setNumberMode('REAL')}
-            className={`px-3 py-1 text-[11px] font-bold flex items-center space-x-1 cursor-pointer transition-colors ${
-              numberMode === 'REAL'
-                ? 'bg-[#111111] text-white'
-                : 'text-[#555555] hover:text-[#111111]'
-            }`}
-            title="Use production-sized parameters with masked values and technical drawers"
-          >
-            <Cpu className="w-3.5 h-3.5" />
-            <span>REAL CRYPTO MODE</span>
-          </button>
-        </div>
-
-        {/* Right Tools */}
-        <div className="flex items-center space-x-3 text-[11px]">
-          
-          {/* Journey Map Modal trigger */}
-          <button
-            onClick={onOpenJourneyMap}
-            className="flex items-center space-x-1 text-[#555555] hover:text-[#111111] font-bold cursor-pointer transition-colors"
-          >
-            <Map className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">MAP</span>
-          </button>
-
-          {/* Table Modal trigger */}
+          {/* Table Modal Button */}
           <button
             onClick={onOpenSequenceModal}
-            className="flex items-center space-x-1 text-[#555555] hover:text-[#111111] font-bold cursor-pointer transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-[#09090B] text-xs font-mono font-bold bg-white hover:bg-[#FAFAFA] active:translate-y-0.5 shadow-[2px_2px_0px_0px_#09090B]"
+            title="View Full Technical Sequence Table"
           >
-            <span className="hidden md:inline">TABLE</span>
+            <Table size={14} />
+            <span>FULL SEQUENCE</span>
           </button>
 
-          {/* Backend Activity Toggle */}
+          {/* Reset Experiment */}
           <button
-            onClick={() => setShowBackendDrawer(!showBackendDrawer)}
-            className={`px-2.5 py-1 border text-[10px] font-bold flex items-center space-x-1 cursor-pointer ${
-              showBackendDrawer
-                ? 'bg-[#111111] text-white border-[#111111]'
-                : 'bg-white text-[#111111] border-[#111111] hover:bg-[#F7F7F5]'
-            }`}
+            onClick={onReset}
+            className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-[#09090B] text-xs font-mono font-bold bg-white hover:bg-[#FEF2F2] hover:text-[#DC2626] hover:border-[#DC2626] active:translate-y-0.5 shadow-[2px_2px_0px_0px_#09090B]"
+            title="Restart BBS Experiment"
           >
-            <Activity className="w-3 h-3" />
-            <span>LOGS</span>
+            <RotateCcw size={14} />
+            <span>RESTART</span>
           </button>
-
         </div>
+      </div>
 
+      {/* Stepper Bar */}
+      <div className="border-t border-[#09090B] bg-[#FAFAFA] overflow-x-auto">
+        <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between gap-1 min-w-max">
+          {steps.map((s) => {
+            const isActive = currentStep === s.num;
+            const isCompleted = currentStep > s.num;
+
+            return (
+              <button
+                key={s.num}
+                onClick={() => {
+                  if (s.num <= currentStep) setStep(s.num);
+                }}
+                disabled={s.num > currentStep}
+                className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono transition-all ${
+                  isActive
+                    ? 'font-bold bg-[#09090B] text-white'
+                    : isCompleted
+                    ? 'font-medium text-[#09090B] hover:bg-[#E4E4E7]'
+                    : 'text-[#A1A1AA] cursor-not-allowed'
+                }`}
+              >
+                <span className="w-4 h-4 rounded-full border border-current flex items-center justify-center text-[10px]">
+                  {s.num}
+                </span>
+                <span>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </header>
   );

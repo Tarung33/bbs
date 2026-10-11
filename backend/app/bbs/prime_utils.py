@@ -8,17 +8,14 @@ def is_prime(n: int) -> bool:
     return sympy.isprime(n)
 
 def is_blum_prime(p: int) -> bool:
-    """Check if p is a prime and satisfies p ≡ 3 (mod 4)."""
     return is_prime(p) and (p % 4 == 3)
 
 def gcd(a: int, b: int) -> int:
-    """Calculate greatest common divisor."""
     while b:
         a, b = b, a % b
     return a
 
 def are_coprime(a: int, b: int) -> bool:
-    """Check if gcd(a, b) == 1."""
     return gcd(a, b) == 1
 
 def generate_blum_prime(bits: int = 512) -> int:
